@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Form, FormGroup, Col, FormControl, Button, ControlLabel, Checkbox } from 'react-bootstrap'
 
-class Login extends Component {
+class Register extends Component {
  // constructor(props){
  //   super(props)
  //   this.state{
@@ -32,7 +32,7 @@ class Login extends Component {
 
          <FormGroup>
              <Col smOffset={2} sm={10}>
-                 <Button type="submit">Sign in</Button>
+                 <Button type="submit">Register</Button>
              </Col>
          </FormGroup>
      </Form>
@@ -40,4 +40,4 @@ class Login extends Component {
    )
  }
 }
-export default Login
+export default Register
