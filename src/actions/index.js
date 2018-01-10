@@ -1,20 +1,50 @@
-export const JOURNAL_CREATED = 'JOURNAL_CREATED'
-export function createJournal(journal_heading, journal_entry) {
+export const LOG_IN_SUCCESS = 'LOG_IN_SUCCESS'
+
+export const loginUser = (credentials) => {
   return async (dispatch) => {
-    const response = await fetch(`http://localhost:3000/journal`, {
+    console.log(credentials)
+
+    const request = await fetch(`${process.env.REACT_APP_API_URL}/token`, {
       method: 'POST',
-      body: JSON.stringify({ sheet_id: sheet_id, journal_heading: journal_heading, journal_entry: journal_entry }),
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
-      }
+      },
+      body: JSON.stringify(credentials)
     })
-    const createdJournal = await response.json()
-    dispatch({
-      type: JOURNAL_CREATED,
-      sheet_id: sheet_id,
-      journal_heading: journal_heading,
-      journal_entry: journal_entry
+    const json = await request.json()
+    console.log(json)
+
+  };
+}
+
+export const registerUser = (credentials) => {
+  return async (dispatch) => {
+    console.log(credentials)
+
+    const request = await fetch(`${process.env.REACT_APP_API_URL}/users`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
+      body: JSON.stringify(credentials)
     })
-  }
+    const json = await request.json()
+    console.log(json)
+
+  };
+}
+
+
+async function request(path, method = 'GET', body = null) {
+  if (body) body = JSON.stringify(body)
+  return await fetch(`${process.env.REACT_APP_API_URL}${path}`, {
+    method: method,
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+    },
+    body: body
+  })
 }
