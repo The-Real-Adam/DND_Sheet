@@ -1,47 +1,50 @@
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import AppBar from 'material-ui/AppBar';
-import RaisedButton from 'material-ui/RaisedButton';
-import TextField from 'material-ui/TextField';
+Gena Israel [5:26 PM]
+import React, { Component } from 'react'
+import { Form, FormGroup, Col, FormControl, Button, ControlLabel } from 'react-bootstrap'
 
 class Login extends Component {
-
-constructor(props){
-  super(props);
-  this.state={
-  username:'',
-  password:''
-  }
+ constructor(props){
+   super(props)
+   this.state{
+     email:''
+     password:''
+   }
  }
+ render(){
+   return(
+     <Form horizontal>
+         <FormGroup controlId="formHorizontalEmail">
+             <Col componentClass={ControlLabel} sm={2}>
+                 Email
+             </Col>
+             <Col sm={10}>
+                 <FormControl type="email" placeholder="Email" />
+             </Col>
+         </FormGroup>
 
-render() {
-    return (
-      <div>
-        <MuiThemeProvider>
-          <div>
-          <AppBar
-             title="Login"
-           />
-           <TextField
-             hintText="Enter your Username"
-             floatingLabelText="Username"
-             onChange = {(event,newValue) => this.setState({username:newValue})}
-             />
-           <br/>
-             <TextField
-               type="password"
-               hintText="Enter your Password"
-               floatingLabelText="Password"
-               onChange = {(event,newValue) => this.setState({password:newValue})}
-               />
-             <br/>
-             <RaisedButton label="Submit" primary={true} style={style} onClick={(event) => this.handleClick(event)}/>
-         </div>
-         </MuiThemeProvider>
-      </div>
-    );
-  }
+         <FormGroup controlId="formHorizontalPassword">
+             <Col componentClass={ControlLabel} sm={2}>
+                 Password
+             </Col>
+             <Col sm={10}>
+                 <FormControl type="password" placeholder="Password" />
+             </Col>
+         </FormGroup>
+
+         <FormGroup>
+             <Col smOffset={2} sm={10}>
+                 <Checkbox>Remember me</Checkbox>
+             </Col>
+         </FormGroup>
+
+         <FormGroup>
+             <Col smOffset={2} sm={10}>
+                 <Button type="submit">Sign in</Button>
+             </Col>
+         </FormGroup>
+     </Form>
+
+   )
+ }
 }
-const style = {
- margin: 15,
-};
-export default Login;
+export default Login

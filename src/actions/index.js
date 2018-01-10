@@ -1,42 +1,20 @@
-export const PRODUCTS_RECEIVED = 'PRODUCTS_RECEIVED'
-export function fetchProducts() {
+export const JOURNAL_CREATED = 'JOURNAL_CREATED'
+export function createJournal(journal_heading, journal_entry) {
   return async (dispatch) => {
-    const response = await fetch(`http://localhost:8082/api/products`)
-    const json = await response.json()
-    dispatch({
-      type: PRODUCTS_RECEIVED,
-      products: json._embedded.products
-    })
-  }
-}
-
-export const ITEMS_RECEIVED = 'ITEMS_RECEIVED'
-export function fetchItems() {
-  return async (dispatch) => {
-    const response = await fetch(`http://localhost:8082/api/items`)
-    const json = await response.json()
-    dispatch({
-      type: ITEMS_RECEIVED,
-      items: json._embedded.items
-    })
-  }
-}
-
-export const ITEM_CREATED = 'ITEM_CREATED'
-export function createItem(quantity, product) {
-  return async (dispatch) => {
-    const response = await fetch(product._links.items.href, {
+    const response = await fetch(`http://localhost:3000/journal`, {
       method: 'POST',
-      body: JSON.stringify({ quantity: quantity }),
+      body: JSON.stringify({ sheet_id: sheet_id, journal_heading: journal_heading, journal_entry: journal_entry }),
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
       }
     })
-    const createdItem = await response.json()
+    const createdJournal = await response.json()
     dispatch({
-      type: ITEM_CREATED,
-      item: createdItem,
+      type: JOURNAL_CREATED,
+      sheet_id: sheet_id,
+      journal_heading: journal_heading,
+      journal_entry: journal_entry
     })
   }
 }
