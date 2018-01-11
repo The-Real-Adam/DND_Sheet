@@ -1,5 +1,7 @@
-export const LOG_IN_SUCCESS = 'LOG_IN_SUCCESS'
+import History from '../components/History'
+import Cookies from 'universal-cookie'
 
+export const LOG_IN_SUCCESS = 'LOG_IN_SUCCESS'
 export const loginUser = (credentials) => {
   return async (dispatch) => {
     console.log(credentials)
@@ -12,12 +14,23 @@ export const loginUser = (credentials) => {
       },
       body: JSON.stringify(credentials)
     })
-    const json = await request.json()
-    console.log(json)
+    const body = await request.json()
+    const cookies = new Cookies()
+    cookies.set('dnd-jwt', body.token, {path:'/'})
+    const raw = await request.status
+      console.log(raw)
+      if (request.status === 200){
+        window.location.href = '/'
+      } else {
+        window.location.href = '/register'
+      }
+    // const json = await request.json()
+    // console.log(json)
 
   };
 }
 
+export const REGISTER_SUCCESS = 'REGISTER_SUCCESS'
 export const registerUser = (credentials) => {
   return async (dispatch) => {
     console.log(credentials)
@@ -30,10 +43,35 @@ export const registerUser = (credentials) => {
       },
       body: JSON.stringify(credentials)
     })
-    const json = await request.json()
-    console.log(json)
+    const string = await request.status
+    if (request.status === 200) {
+      History.push('/login')
+    } else {
+      History.push('/FourOhFour')
+    }
+  }
+}
 
-  };
+export const CHARACTER_CREATE = 'CHARACTER_CREATE'
+export const createSheet = (character) => {
+  return async (dispatch) => {
+    console.log(character)
+
+    const request = await fetch(`${process.env.REACT_APP_API_URL}/sheet`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
+      body: JSON.stringify(character)
+    })
+    const string = await request.status
+    if (request.status === 200) {
+      History.push('/SheetList')
+    } else {
+      History.push('/FourOhFour')
+    }
+  }
 }
 
 

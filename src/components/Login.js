@@ -1,22 +1,10 @@
-import React, {Component} from 'react'
-import {
-  Form, FormGroup,Col, FormControl, Button, ControlLabel} from 'react-bootstrap'
-import {bindActionCreators} from 'redux';
-import {connect} from 'react-redux';
-import {
-  loginUser
-} from '../actions'
+import React, { Component } from 'react'
+import { Form, FormGroup,Col, FormControl, Button, ControlLabel } from 'react-bootstrap'
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { loginUser } from '../actions'
 
 class Login extends React.Component {
-
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      email: '',
-      password: ''
-    }
-  }
 
   handleSubmit = (event) => {
     event.preventDefault();
@@ -76,7 +64,7 @@ class Login extends React.Component {
   //   return bindActionCreators({ loginSuccess }, dispatch)
   // }
   // export default connect(null, mapDispatchToProps)(Login)
-  const mapStateToProps = (state, { messageId }) => {
+  const mapStateToProps = (state) => {
 
     return {
 
