@@ -1,7 +1,5 @@
 import React from 'react'
-import {
-  sendMessage
-} from '../actions'
+import {sendMessage} from '../actions'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { withRouter } from 'react-router-dom'

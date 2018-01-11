@@ -4,7 +4,7 @@ import Cookies from 'universal-cookie'
 export const LOG_IN_SUCCESS = 'LOG_IN_SUCCESS'
 export const loginUser = (credentials) => {
   return async (dispatch) => {
-    console.log(credentials)
+    console.log('credentials: ', credentials)
 
     const request = await fetch(`${process.env.REACT_APP_API_URL}/token`, {
       method: 'POST',
@@ -43,7 +43,6 @@ export const registerUser = (credentials) => {
       },
       body: JSON.stringify(credentials)
     })
-    const string = await request.status
     if (request.status === 200) {
       History.push('/login')
     } else {
@@ -55,17 +54,15 @@ export const registerUser = (credentials) => {
 export const CHARACTER_CREATE = 'CHARACTER_CREATE'
 export const createSheet = (character) => {
   return async (dispatch) => {
-    console.log(character)
-
     const request = await fetch(`${process.env.REACT_APP_API_URL}/sheet`, {
       method: 'POST',
+      credentials: 'include',
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
       },
       body: JSON.stringify(character)
     })
-    const string = await request.status
     if (request.status === 200) {
       History.push('/SheetList')
     } else {
@@ -74,6 +71,45 @@ export const createSheet = (character) => {
   }
 }
 
+export const GET_SHEET = 'GET_SHEET'
+export const getSheet = (character) => {
+  return async (dispatch) => {
+    console.log(character)
+    
+    const request = await fetch(`${process.env.REACT_APP_API_URL}/sheet/2`, {
+      method: 'GET',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      }
+    })
+    // console.log('headers is: ', headers);
+    const string = await request.status
+    if (request.status === 200) {
+      History.push('/Sheet')
+    } else {
+      History.push('/FourOhFour')
+    }
+  }
+}
+
+// export const FETCH_HIKES = 'FETCH_HIKES'
+// export const fetchHikes = (location) => {
+//  return async (dispatch) => {
+//    const url = ROOT_URL + location;
+//    // const request = axios.get(url)
+//    const request = await fetch(url)
+//    const json = await request.json()
+//
+//    console.log(json)
+//
+//    dispatch({
+//      type: FETCH_HIKES,
+//      payload: json.data
+//    })
+//  }
+// }
 
 async function request(path, method = 'GET', body = null) {
   if (body) body = JSON.stringify(body)

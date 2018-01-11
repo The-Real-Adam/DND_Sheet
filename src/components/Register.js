@@ -1,13 +1,10 @@
 import React, {Component} from 'react'
-import {
-  Form, FormGroup,Col, FormControl, Button, ControlLabel} from 'react-bootstrap'
+import {Form, FormGroup,Col, FormControl, Button, ControlLabel} from 'react-bootstrap'
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import {
-  registerUser
-} from '../actions'
+import {registerUser} from '../actions'
 
-class Login extends React.Component {
+class Register extends React.Component {
 
   constructor(props) {
     super(props)
@@ -75,7 +72,7 @@ class Login extends React.Component {
   // function mapDispatchToProps(dispatch){
   //   return bindActionCreators({ loginSuccess }, dispatch)
   // }
-  // export default connect(null, mapDispatchToProps)(Login)
+  // export default connect(null, mapDispatchToProps)(Register)
   const mapStateToProps = (state) => {
 
     return {
@@ -90,4 +87,4 @@ class Login extends React.Component {
   export default connect(
     mapStateToProps,
     mapDispatchToProps
-  )(Login);
+  )(Register);

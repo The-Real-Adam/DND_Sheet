@@ -32,14 +32,16 @@ class Home extends Component {
     			</Navbar.Brand>
     			<Navbar.Toggle />
     		</Navbar.Header>
-        
+
     		<Navbar.Collapse>
     			<Nav>
+            <NavItem eventKey={2} href="/register">{this.state.authorized ? '' : 'Register'}
+            </NavItem>
     				<NavItem eventKey={1} href="/login">{this.state.authorized ? 'Log Out' : 'Log In'}
     				</NavItem>
-    				<NavItem eventKey={2} href="/register">{this.state.authorized ? '' : 'Register'}
-    				</NavItem>
             <NavItem eventKey={3} href="/SheetList">{this.state.authorized ? 'My Sheets' : ''}
+            </NavItem>
+            <NavItem eventKey={3} href="/CharacterCreation">{this.state.authorized ? 'Character Creator' : ''}
             </NavItem>
     			</Nav>
     		</Navbar.Collapse>

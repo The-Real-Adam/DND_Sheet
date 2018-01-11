@@ -1,11 +1,8 @@
 import React, {Component} from 'react'
-import {
-  Form, FormGroup,Col, FormControl, Button, ControlLabel} from 'react-bootstrap'
+import {Form, FormGroup,Col, FormControl, Button, ControlLabel} from 'react-bootstrap'
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import {
-  createSheet
-} from '../actions'
+import {getSheet} from '../actions'
 
 class SheetList extends React.Component {
 
@@ -55,7 +52,7 @@ class SheetList extends React.Component {
   }
 
   const mapDispatchToProps = dispatch => bindActionCreators({
-    createSheet
+    getSheet
   }, dispatch)
 
   export default connect(

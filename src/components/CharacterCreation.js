@@ -1,20 +1,27 @@
 import React, {Component} from 'react'
-import {
-  Form, FormGroup,Col, FormControl, Button, ControlLabel} from 'react-bootstrap'
+import {Form, FormGroup,Col, FormControl, Button, ControlLabel} from 'react-bootstrap'
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import {
-  createSheet
-} from '../actions'
+import {createSheet} from '../actions'
 
-class SheetList extends React.Component {
+class CharacterCreation extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
     let char_name = document.getElementById('char_name').value
-    console.log(char_name)
+    let char_race = document.getElementById('char_race').value
+    let char_class = document.getElementById('char_class').value
+    let char_align = document.getElementById('char_align').value
+    let char_gender = document.getElementById('char_gender').value
+    let char_age = document.getElementById('char_age').value
+
     let character = {
-      char_name
+      char_name,
+      char_race,
+      char_class,
+      char_align,
+      char_gender,
+      char_age
     }
     console.log(character)
     this.props.createSheet(character);
@@ -131,4 +138,4 @@ class SheetList extends React.Component {
   export default connect(
     mapStateToProps,
     mapDispatchToProps
-  )(SheetList);
+  )(CharacterCreation);

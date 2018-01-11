@@ -1,25 +1,22 @@
 import React, {Component} from 'react'
-import {
-  Form, FormGroup,Col, FormControl, Button, ControlLabel} from 'react-bootstrap'
+import {Form, FormGroup,Col, FormControl, Button, ControlLabel} from 'react-bootstrap'
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import {
-  createSheet
-} from '../actions'
+import {getSheet} from '../actions'
 
 
-class SheetList extends React.Component {
+class Sheet extends Component {
 
-  handleSubmit = (event) => {
-    event.preventDefault();
-    let char_name = document.getElementById('char_name-input').value
-    console.log(char_name)
-    let character = {
-      char_name
-    }
-    console.log(character)
-    this.props.createSheet(character);
-  }
+  // handleSubmit = (event) => {
+  //   event.preventDefault();
+  //   let users_id = document.getElementById('users_id').value
+  //   console.log(users_id)
+  //   let character = {
+  //     users_id
+  //   }
+  //   console.log(character)
+  //   this.props.getSheet(users_id);
+  // }
 
     render() {
       return (
@@ -30,10 +27,10 @@ class SheetList extends React.Component {
             </Col>
             <Col sm={10}>
               <input
-                id="char_name-input"
-                name="char_name"
-                type="char_name"
-                placeholder="Your Charcter Name"
+                id="users_id"
+                name="users_id"
+                type="number"
+                placeholder='1'
               />
             </Col>
           </FormGroup>
@@ -56,10 +53,10 @@ class SheetList extends React.Component {
   }
 
   const mapDispatchToProps = dispatch => bindActionCreators({
-    createSheet
+    getSheet
   }, dispatch)
 
   export default connect(
     mapStateToProps,
     mapDispatchToProps
-  )(SheetList);
+  )(Sheet);
