@@ -26,7 +26,6 @@ export const loginUser = (credentials) => {
       }
     // const json = await request.json()
     // console.log(json)
-
   };
 }
 
@@ -64,19 +63,18 @@ export const createSheet = (character) => {
       body: JSON.stringify(character)
     })
     if (request.status === 200) {
-      History.push('/SheetList')
+      window.location.href = '/SheetList'
     } else {
       History.push('/FourOhFour')
     }
   }
 }
 
-export const GET_SHEET = 'GET_SHEET'
-export const getSheet = (character) => {
+export const GET_SHEETS = 'GET_SHEETS'
+export const getSheets = () => {
   return async (dispatch) => {
-    console.log(character)
-    
-    const request = await fetch(`${process.env.REACT_APP_API_URL}/sheet/2`, {
+    console.log('getSheets hit')
+    const request = await fetch(`${process.env.REACT_APP_API_URL}/sheet`, {
       method: 'GET',
       credentials: 'include',
       headers: {
@@ -85,12 +83,69 @@ export const getSheet = (character) => {
       }
     })
     // console.log('headers is: ', headers);
-    const string = await request.status
-    if (request.status === 200) {
-      History.push('/Sheet')
-    } else {
-      History.push('/FourOhFour')
-    }
+    const string = await request.json()
+    console.log('get sheets response is: ', string);
+    console.log('string.data is: ', string[0])
+    dispatch({
+      type: GET_SHEETS,
+      payload: string
+    })
+
+    // if (request.status === 200) {
+    //   History.push('/Sheet')
+    // } else {
+    //   History.push('/FourOhFour')
+    // }
+  }
+}
+
+export const GET_SHEET = 'GET_SHEET'
+export const getSheet = (character) => {
+  return async (dispatch) => {
+    console.log(character)
+    let id = this.props.id
+    const request = await fetch(`${process.env.REACT_APP_API_URL}/sheet/${id}`, {
+      method: 'GET',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      }
+    })
+    // console.log('headers is: ', headers);
+    const string = await request.json()
+    console.log('get sheet response is: ', string);
+    dispatch({
+      type: GET_SHEET,
+      payload: string
+    })
+
+    // if (request.status === 200) {
+    //   History.push('/Sheet')
+    // } else {
+    //   History.push('/FourOhFour')
+    // }
+  }
+}
+
+export const CHARACTER_UPDATE = 'CHARACTER_UPDATE'
+export const updateSheet = (character) => {
+  return async (dispatch) => {
+    let id = this.sheet.id
+    const request = await fetch(`${process.env.REACT_APP_API_URL}/sheet/${id}`, {
+      method: 'PATCH',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
+      body: JSON.stringify(character)
+    })
+    // if (request.status === 200) {
+    //   window.location.href = '/SheetList'
+    // } else {
+    //   History.push('/FourOhFour')
+    // }
   }
 }
 

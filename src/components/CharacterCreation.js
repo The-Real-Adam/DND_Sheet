@@ -23,7 +23,7 @@ class CharacterCreation extends Component {
       char_gender,
       char_age
     }
-    console.log(character)
+    // console.log(character)
     this.props.createSheet(character);
   }
 

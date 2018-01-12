@@ -1,4 +1,8 @@
 import { combineReducers } from 'redux'
+import SheetsReducer from './reducer_sheets'
 
-export default combineReducers({
+const rootReducer = combineReducers({
+  sheets: SheetsReducer
 })
+
+export default rootReducer

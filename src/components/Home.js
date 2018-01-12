@@ -11,17 +11,17 @@ class Home extends Component {
     }
   }
   componentWillMount(){
-  const cookies = new Cookies();
-  const myCookie = Boolean(cookies.get('dnd-jwt'));
-  console.log(myCookie);
-  if(myCookie){
-    this.setState({
-      authorized:true
-    })
-  } else {
-    this.setState({authorized:false})
+    const cookies = new Cookies();
+    const myCookie = Boolean(cookies.get('dnd-jwt'));
+    console.log(myCookie);
+    if(myCookie){
+      this.setState({
+        authorized:true
+      })
+    } else {
+      this.setState({authorized:false})
+    }
   }
-}
 
   render() {
     return (
@@ -35,13 +35,13 @@ class Home extends Component {
 
     		<Navbar.Collapse>
     			<Nav>
-            <NavItem eventKey={2} href="/register">{this.state.authorized ? '' : 'Register'}
+            <NavItem eventKey={2} href="/register">{this.state.authorized ? null : 'Register'}
             </NavItem>
     				<NavItem eventKey={1} href="/login">{this.state.authorized ? 'Log Out' : 'Log In'}
     				</NavItem>
-            <NavItem eventKey={3} href="/SheetList">{this.state.authorized ? 'My Sheets' : ''}
+            <NavItem eventKey={3} href="/SheetList">{this.state.authorized ? 'My Sheets' : null}
             </NavItem>
-            <NavItem eventKey={3} href="/CharacterCreation">{this.state.authorized ? 'Character Creator' : ''}
+            <NavItem eventKey={3} href="/CharacterCreation">{this.state.authorized ? 'Character Creator' : null}
             </NavItem>
     			</Nav>
     		</Navbar.Collapse>

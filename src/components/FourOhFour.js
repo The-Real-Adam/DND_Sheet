@@ -5,7 +5,7 @@ class FourOhFour extends Component {
 render() {
   return (
     <div>
-      <h1>404 -- You fell in one of the Rabbit holes</h1>
+      <h1>404 -- You fell in one of the Rabbit Holes</h1>
     </div>
   )
 }

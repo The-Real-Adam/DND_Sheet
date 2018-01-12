@@ -2,60 +2,67 @@ import React, {Component} from 'react'
 import {Form, FormGroup,Col, FormControl, Button, ControlLabel} from 'react-bootstrap'
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import {getSheet} from '../actions'
+import {getSheets, getSheet} from '../actions'
 
 class SheetList extends React.Component {
 
-  handleSubmit = (event) => {
-    event.preventDefault();
-    let char_name = document.getElementById('char_name-input').value
-    console.log(char_name)
-    let character = {
-      char_name
-    }
-    console.log(character)
-    this.props.createSheet(character);
+  componentWillMount = () => {
+    this.props.getSheets()
   }
 
-    render() {
-      return (
-        <Form horizontal onSubmit={this.handleSubmit}>
-          <FormGroup controlId="formHorizontalEmail">
-            <Col componentClass={ControlLabel} sm={2}>
-              Your Hero Name
-            </Col>
-            <Col sm={10}>
-              <input
-                id="char_name-input"
-                name="char_name"
-                type="char_name"
-                placeholder="Your Charcter Name"
-              />
-            </Col>
-          </FormGroup>
-
-          <FormGroup>
-            <Col smOffset={2} sm={10}>
-              <Button type="submit">Create</Button>
-            </Col>
-          </FormGroup>
-        </Form>
-
-      )
-    }
-  }
-  const mapStateToProps = (state, { messageId }) => {
-
-    return {
-
-    }
+  openSheet = (event) => {
+    let id = event.target.key
+    this.props.getSheet(id)
   }
 
-  const mapDispatchToProps = dispatch => bindActionCreators({
-    getSheet
-  }, dispatch)
+  //
+  render() {
+    // console.log('this.state: ', this.state);
+    // console.log('this.props: ', this.props.sheets.sheets);
+    let sheets = this.props.sheets.sheets || []
+    // console.log('this.props.sheets.data: ', this.props.string)
+    // sheets.map(x => console.log('x is: ', x))
 
-  export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(SheetList);
+    return (
+      <div className="resultslistcontainer container">
+        <table className="table table-hover">
+          <thead>
+            <tr>
+              <th>Character Name</th>
+              <th>Character Class</th>
+              <th>Character Level</th>
+              <th>Open</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            { sheets.map(x =>
+              <tr>
+              <td>{x.char_name}</td>
+              <td>{x.char_class}</td>
+              <td>{x.char_level}</td>
+              <td><Button key={x.id} onClick={this.openSheet}> Open </Button></td>
+              </tr>
+            )}
+
+          </tbody>
+        </table>
+      </div>
+    )
+  }
+}
+
+const mapStateToProps = (state) => {
+  return {
+    sheets: state.sheets
+  }
+}
+
+const mapDispatchToProps = dispatch => bindActionCreators({
+  getSheets
+}, dispatch)
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SheetList);
