@@ -11,8 +11,13 @@ class SheetList extends React.Component {
   }
 
   openSheet = (event) => {
-    let id = event.target.key
-    this.props.getSheet(id)
+    // event.preventDefault()
+    // // let char_name = document.getElementById('char_name').value
+    // console.log('event target ID is: ', event.target.id)
+    // let id = event.target.id
+    // this.props.getSheet(id)
+
+    this.props.history.push('/sheet/' + event.target.id)
   }
 
   //
@@ -37,11 +42,11 @@ class SheetList extends React.Component {
           <tbody>
 
             { sheets.map(x =>
-              <tr>
+              <tr key={x.id}>
               <td>{x.char_name}</td>
               <td>{x.char_class}</td>
               <td>{x.char_level}</td>
-              <td><Button key={x.id} onClick={this.openSheet}> Open </Button></td>
+              <td><Button id={x.id} onClick={this.openSheet}> Open </Button></td>
               </tr>
             )}
 
@@ -54,12 +59,13 @@ class SheetList extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    sheets: state.sheets
+    sheets: state.sheets,
+    sheet: state.sheet
   }
 }
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  getSheets
+  getSheets, getSheet
 }, dispatch)
 
 export default connect(

@@ -72,6 +72,7 @@ export const createSheet = (character) => {
 
 export const GET_SHEETS = 'GET_SHEETS'
 export const getSheets = () => {
+  console.log('inside of the SheetList Action');
   return async (dispatch) => {
     console.log('getSheets hit')
     const request = await fetch(`${process.env.REACT_APP_API_URL}/sheet`, {
@@ -84,26 +85,21 @@ export const getSheets = () => {
     })
     // console.log('headers is: ', headers);
     const string = await request.json()
-    console.log('get sheets response is: ', string);
-    console.log('string.data is: ', string[0])
+    // console.log('get sheets response is: ', string);
+    // console.log('string.data is: ', string[0])
     dispatch({
       type: GET_SHEETS,
       payload: string
     })
-
-    // if (request.status === 200) {
-    //   History.push('/Sheet')
-    // } else {
-    //   History.push('/FourOhFour')
-    // }
   }
 }
 
 export const GET_SHEET = 'GET_SHEET'
-export const getSheet = (character) => {
+export const getSheet = (id) => {
+  console.log('get a single sheet and the id of that sheet is: ', id);
   return async (dispatch) => {
-    console.log(character)
-    let id = this.props.id
+    console.log('inside Async request', id)
+    // let id = this.props.id
     const request = await fetch(`${process.env.REACT_APP_API_URL}/sheet/${id}`, {
       method: 'GET',
       credentials: 'include',
@@ -112,18 +108,19 @@ export const getSheet = (character) => {
         'Accept': 'application/json',
       }
     })
-    // console.log('headers is: ', headers);
-    const string = await request.json()
-    console.log('get sheet response is: ', string);
+    console.log('Post Async Request');
+    const json = await request.json()
+    console.log('get sheet response is: ', json);
     dispatch({
       type: GET_SHEET,
-      payload: string
+      payload: json
     })
-
+    // console.log('dispatch: ', dispatch({ type: GET_SHEET,payload: json}))
     // if (request.status === 200) {
-    //   History.push('/Sheet')
-    // } else {
-    //   History.push('/FourOhFour')
+    //   window.location.href = '/Sheet'
+    // }
+    // else {
+    //   window.location.href = '/FourOhFour'
     // }
   }
 }
