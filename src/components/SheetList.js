@@ -11,12 +11,6 @@ class SheetList extends React.Component {
   }
 
   openSheet = (event) => {
-    // event.preventDefault()
-    // // let char_name = document.getElementById('char_name').value
-    // console.log('event target ID is: ', event.target.id)
-    // let id = event.target.id
-    // this.props.getSheet(id)
-
     this.props.history.push('/sheet/' + event.target.id)
   }
 

@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {Clearfix, Grid, Row, Form, FormGroup, Col, FormControl, Button, ControlLabel} from 'react-bootstrap'
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import {getSheet} from '../actions'
+import {getSheet, damageHandler} from '../actions'
 import './sheet.css'
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap-theme.css';
@@ -24,15 +24,37 @@ class Sheet extends Component {
 
     this.props.getSheet(this.props.match.params.sheetId)
   }
-  // componentWillMount = () => {
-  //   this.props.getSheet()
-  // }
+
+  damageSubmit = (event) => {
+    event.preventDefault();
+    let current_hp = document.getElementById('current_hp').value
+    let max_hp = document.getElementById('max_hp').value
+    let id = this.props.sheet.id
+
+    if(max_hp === ''){
+      max_hp = `${this.props.sheet.max_hp}`
+    }
+
+    if(current_hp === ''){
+      current_hp = `${this.props.sheet.current_hp}`
+    }
+
+    let hitpoints = {
+      current_hp,
+      max_hp,
+    }
+
+    console.log('hitpoints is;', hitpoints);
+    this.props.damageHandler(hitpoints, id);
+  }
+
 
     render() {
       const { sheet } = this.props
       if (sheet.users_id === undefined) {
         return <p>Loading...</p>
       }
+      console.log('this.props.sheet.id>>>>>>',this.props.sheet.id)
       // let sheet = this.props.state.sheet
       console.log('this.props.sheet:  in <Sheet />å', sheet);
       return (
@@ -40,13 +62,43 @@ class Sheet extends Component {
         <br></br>
         <div className='container'>
         <Grid>
+          <Row className='center'>
+            <h1><u>{sheet.char_name} level {sheet.char_level} {sheet.char_class}</u></h1>
+          </Row>
             <Row className="show-grid">
                 <Col sm={6} md={3}>
 
                   <div id='hitpointsContain'>
                     hitpoints:
                     <h1>{sheet.current_hp}/{sheet.max_hp}</h1>
-                    <button>I Took Damage</button>
+
+                    <Form horizontal className='center' onSubmit={this.damageSubmit}>
+                      <FormGroup controlId="formHorizontalName">
+                        <Col sm={10} className='justifyCenter'>
+                          <input
+                            className='hitpoints'
+                            id="current_hp"
+                            name="current_hp"
+                            type="number"
+                            placeholder="HP"
+                          />
+                          /
+                          <input
+                            className='hitpoints'
+                            id="max_hp"
+                            name="max_hp"
+                            type="number"
+                            placeholder="Max HP"
+                          />
+                          <Button type='submit' className='btn btn-danger normalText'>√</Button>
+                        </Col>
+                      </FormGroup>
+                      <FormGroup>
+                        <Col sm={10}>
+                        </Col>
+                      </FormGroup>
+                    </Form>
+
                   </div>
                 </Col>
 
@@ -76,6 +128,8 @@ class Sheet extends Component {
                   </Col>
                   <Col sm={6} md={6}>
                     <strong>Languages:</strong> {sheet.char_languages}
+                    <br></br>
+                    <Button className='normalText'>Edit</Button>
                   </Col>
                 </Row>
 
@@ -95,20 +149,59 @@ class Sheet extends Component {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr><td>Strength:</td> <td>{sheet.strength}</td><td><input className="bonus" type="number" placeholder='0'></input></td></tr>
-                    <tr><td>Dexterity:</td> <td>{sheet.dexterity}</td><td><input className="bonus" type="number" placeholder='0'></input></td></tr>
-                    <tr><td>Constitution:</td> <td>{sheet.constution}</td><td><input className="bonus" type="number" placeholder='0'></input></td></tr>
-                    <tr><td>Intellect:</td> <td>{sheet.intellect}</td><td><input className="bonus" type="number" placeholder='0'></input></td></tr>
-                    <tr><td>Wisdom:</td> <td>{sheet.wisdom}</td><td><input className="bonus" type="number" placeholder='0'></input></td></tr>
-                    <tr><td>Charisma:</td> <td>{sheet.charisma}</td><td><input className="bonus" type="number" placeholder='0'></input></td></tr>
+                    <tr><td>Strength:</td><td>{sheet.strength}</td><td><input className="bonus" type="number" placeholder='0'></input></td></tr>
+                    <tr><td>Dexterity:</td><td>{sheet.dexterity}</td><td><input className="bonus" type="number" placeholder='0'></input></td></tr>
+                    <tr><td>Constitution:</td><td>{sheet.constution}</td><td><input className="bonus" type="number" placeholder='0'></input></td></tr>
+                    <tr><td>Intellect:</td><td>{sheet.intellect}</td><td><input className="bonus" type="number" placeholder='0'></input></td></tr>
+                    <tr><td>Wisdom:</td><td>{sheet.wisdom}</td><td><input className="bonus" type="number" placeholder='0'></input></td></tr>
+                    <tr><td>Charisma:</td><td>{sheet.charisma}</td><td><input className="bonus" type="number" placeholder='0'></input></td></tr>
                   </tbody>
                 </table>
                 </div>
               </Col>
-              <Col sm={6} md={3}>
 
+              <Col sm={6} md={3}>
+              <div className='center' id='statsContain'>
+              <table className="table table-hover">
+                <thead className='center'>
+                  <tr className='center'>
+                    <th>Attack</th>
+                    <th>Bonus</th>
+                  </tr>
+                </thead>
+                <tbody className='center'>
+                  <tr><td>1st Attack:</td><td>{sheet.bab_1}</td></tr>
+                  <tr><td>2nd Attack:</td><td>{sheet.bab_2}</td></tr>
+                  <tr><td>3rd Attack:</td><td>{sheet.bab_3}</td></tr>
+                  <tr><td>4th Attack:</td><td>{sheet.bab_4}</td></tr>
+                  <tr><td>Combat Maneuver Bonus:</td> <td>{sheet.cmb}</td></tr>
+                </tbody>
+              </table>
+              <Button className='editBtn normalText'>Edit</Button>
+              </div>
               </Col>
+              <Col sm={6} md={3}>
+              <div className='center' id='statsContain'>
+              <table className="table table-hover">
+                <thead className='center'>
+                  <tr className='center'>
+                    <th>Save</th>
+                    <th>Bonus</th>
+                  </tr>
+                </thead>
+                <tbody className='center'>
+                  <tr><td>Fortitude:</td><td>{sheet.fortitude}</td></tr>
+                  <tr><td>Reflex:</td><td>{sheet.reflex}</td></tr>
+                  <tr><td>Will:</td><td>{sheet.will}</td></tr>
+                  <tr><td>Combat Maneuver Defense:</td> <td>{sheet.cmd}</td></tr>
+                </tbody>
+              </table>
+              <Button className='editBtn normalText'>Edit</Button>
+              </div>
+              </Col>
+
             </Row>
+
         </Grid>
         </div>
         </div>
@@ -124,7 +217,8 @@ class Sheet extends Component {
   }
 
   const mapDispatchToProps = dispatch => bindActionCreators({
-    getSheet
+    getSheet,
+    damageHandler
   }, dispatch)
 
   export default connect(

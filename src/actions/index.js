@@ -138,30 +138,43 @@ export const updateSheet = (character) => {
       },
       body: JSON.stringify(character)
     })
-    // if (request.status === 200) {
-    //   window.location.href = '/SheetList'
-    // } else {
+    if (request.status === 200) {
+    }
+    // else {
     //   History.push('/FourOhFour')
     // }
   }
 }
 
-// export const FETCH_HIKES = 'FETCH_HIKES'
-// export const fetchHikes = (location) => {
-//  return async (dispatch) => {
-//    const url = ROOT_URL + location;
-//    // const request = axios.get(url)
-//    const request = await fetch(url)
-//    const json = await request.json()
-//
-//    console.log(json)
-//
-//    dispatch({
-//      type: FETCH_HIKES,
-//      payload: json.data
-//    })
-//  }
-// }
+
+export const DAMAGE_HANDLER = 'DAMAGE_HANDLER'
+export const damageHandler = (hitpoints, id) => {
+  console.log('hit damageHandler in actions');
+  return async (dispatch) => {
+    console.log('hit damageHandler in async req');
+
+    const request = await fetch(`${process.env.REACT_APP_API_URL}/sheet/${id}`, {
+      method: 'PATCH',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
+      body: JSON.stringify(hitpoints)
+    })
+    const json = await request.json()
+    console.log('damage request.json is: ', json)
+    dispatch({
+      type: DAMAGE_HANDLER,
+      payload: json
+    })
+    if (request.status === 200) {
+      History.push(`/Sheet/${id}`)
+    }
+
+  }
+}
+
 
 async function request(path, method = 'GET', body = null) {
   if (body) body = JSON.stringify(body)

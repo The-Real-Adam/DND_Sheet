@@ -26,8 +26,22 @@
 
 }
 
+#babContain{
+  width: 150px;
+  height: 300px;
+  outline: #000000 solid thick;
+  text-align: center;
+  justify-content: center;
+  padding: 6px 0;
+
+}
+
 .largeText{
   font-size:large;
+}
+
+.normalText{
+  font-size: small;
 }
 
 .center{
@@ -39,5 +53,17 @@
 }
 
 .bonus{
-  width:30px;
+  width:35px;
+}
+
+.hitpoints{
+  width:60px;
+}
+
+.justifyCenter{
+  justify-content: center;
+}
+
+.editBtn{
+  width:inherit;
 }
