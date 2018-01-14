@@ -162,7 +162,7 @@ export const damageHandler = (hitpoints, id) => {
       },
       body: JSON.stringify(hitpoints)
     })
-    const json = await request.json()
+    const json = await request.status
     console.log('damage request.json is: ', json)
     dispatch({
       type: DAMAGE_HANDLER,

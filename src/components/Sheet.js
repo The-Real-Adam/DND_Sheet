@@ -16,6 +16,13 @@ import 'bootstrap/dist/css/bootstrap-theme.css';
 
 class Sheet extends Component {
 
+  constructor(props){
+    super(props)
+    this.state = {
+      editing:false
+    }
+  }
+
   // let sheet = this.props.sheet
   componentDidMount = () => {
     console.log('this.state:', this.state);
@@ -46,6 +53,19 @@ class Sheet extends Component {
 
     console.log('hitpoints is;', hitpoints);
     this.props.damageHandler(hitpoints, id);
+  }
+
+  editCharacter = (event) =>{
+    this.setState({
+      editing:true
+    })
+    console.log('edit character toggled', this.state.editing)
+  }
+
+  submitChanges= (event) =>{
+    this.setState({
+      editing:false
+    })
   }
 
 
@@ -90,7 +110,7 @@ class Sheet extends Component {
                             type="number"
                             placeholder="Max HP"
                           />
-                          <Button type='submit' className='btn btn-danger normalText'>√</Button>
+                          <Button type='submit' className='btn btn-danger input-group-append normalText'>√</Button>
                         </Col>
                       </FormGroup>
                       <FormGroup>
@@ -129,7 +149,7 @@ class Sheet extends Component {
                   <Col sm={6} md={6}>
                     <strong>Languages:</strong> {sheet.char_languages}
                     <br></br>
-                    <Button className='normalText'>Edit</Button>
+                    <Button className='normalText'onClick={this.editCharacter}>Edit</Button>
                   </Col>
                 </Row>
 
