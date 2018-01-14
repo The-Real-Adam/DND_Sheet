@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './home.css'
 import {Button, Navbar, NavItem, Nav} from 'react-bootstrap'
 import Cookies from 'universal-cookie'
 
@@ -25,7 +26,9 @@ class Home extends Component {
 
   render() {
     return (
-      <div>
+      <div className = 'NavBar'>
+      <link href="https://fonts.googleapis.com/css?family=Berkshire+Swash|Press+Start+2P" rel="stylesheet"></link>
+      <link href="https://fonts.googleapis.com/css?family=Berkshire+Swash|Press+Start+2P|VT323" rel="stylesheet"></link>
         <Navbar inverse collapseOnSelect>
       		<Navbar.Header>
       			<Navbar.Brand>

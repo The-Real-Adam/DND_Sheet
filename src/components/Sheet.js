@@ -1,8 +1,12 @@
 import React, {Component} from 'react'
-import {Row, Form, FormGroup, Col, FormControl, Button, ControlLabel} from 'react-bootstrap'
+import {Clearfix, Grid, Row, Form, FormGroup, Col, FormControl, Button, ControlLabel} from 'react-bootstrap'
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {getSheet} from '../actions'
+import './sheet.css'
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/css/bootstrap-theme.css';
+
 
 
 // 1. get your sheet id.
@@ -32,22 +36,81 @@ class Sheet extends Component {
       // let sheet = this.props.state.sheet
       console.log('this.props.sheet:  in <Sheet />å', sheet);
       return (
-        <div className ='container'>
-          <div className='Row'>
+        <div id='contents'>
+        <br></br>
+        <div className='container'>
+        <Grid>
+            <Row className="show-grid">
+                <Col sm={6} md={3}>
 
-          <div>
-            {sheet.char_age}
-          </div>
+                  <div id='hitpointsContain'>
+                    hitpoints:
+                    <h1>{sheet.current_hp}/{sheet.max_hp}</h1>
+                    <button>I Took Damage</button>
+                  </div>
+                </Col>
 
-            <div className = 'Col 6'>
-            <h1><i>{sheet.current_hp}/{sheet.max_hp}</i> Hitpoints</h1>
-            </div>
+                <Row className='largeText'>
+                  <Col sm={6} md={3}>
+                      <strong>Name:</strong> {sheet.char_name}
+                      <br></br>
+                      <strong>Alignment:</strong> {sheet.char_align}
+                      <br></br>
+                      <strong>Height:</strong> {sheet.char_height}
 
-            <div className = 'Col 6'>
-            <h1></h1>
-            </div>
+                  </Col>
+                  <Col sm={6} md={2}>
+                      <strong>Class:</strong> {sheet.char_class}
+                      <br></br>
+                      <strong>Gender:</strong> {sheet.char_gender}
+                      <br></br>
+                      <strong>Weight:</strong> {sheet.char_weight}
 
-          </div>
+                  </Col>
+                  <Col sm={6} md={2}>
+                      <strong>Race:</strong> {sheet.char_race}
+                      <br></br>
+                      <strong>Size:</strong> {sheet.char_size}
+                      <br></br>
+                      <strong>Age:</strong> {sheet.char_age}
+                  </Col>
+                  <Col sm={6} md={6}>
+                    <strong>Languages:</strong> {sheet.char_languages}
+                  </Col>
+                </Row>
+
+
+            </Row>
+            <br></br>
+
+            <Row>
+              <Col sm={6} md={3}>
+                <div id='statsContain'>
+                <table className="table table-hover">
+                  <thead>
+                    <tr className='center'>
+                      <th>Stat</th>
+                      <th>Rank</th>
+                      <th>Bonus</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>Strength:</td> <td>{sheet.strength}</td><td><input className="bonus" type="number" placeholder='0'></input></td></tr>
+                    <tr><td>Dexterity:</td> <td>{sheet.dexterity}</td><td><input className="bonus" type="number" placeholder='0'></input></td></tr>
+                    <tr><td>Constitution:</td> <td>{sheet.constution}</td><td><input className="bonus" type="number" placeholder='0'></input></td></tr>
+                    <tr><td>Intellect:</td> <td>{sheet.intellect}</td><td><input className="bonus" type="number" placeholder='0'></input></td></tr>
+                    <tr><td>Wisdom:</td> <td>{sheet.wisdom}</td><td><input className="bonus" type="number" placeholder='0'></input></td></tr>
+                    <tr><td>Charisma:</td> <td>{sheet.charisma}</td><td><input className="bonus" type="number" placeholder='0'></input></td></tr>
+                  </tbody>
+                </table>
+                </div>
+              </Col>
+              <Col sm={6} md={3}>
+
+              </Col>
+            </Row>
+        </Grid>
+        </div>
         </div>
 
       )

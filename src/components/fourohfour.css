@@ -1,0 +1,11 @@
+.message{
+  font-size: huge;
+  color: red;
+  font-family: 'Press Start 2P', cursive;
+}
+#fourBackground{
+  min-width: 100%;
+  min-height: 1000px;
+  margin-top: -20px;
+  background-image: url(https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/BTrHt7uCiu335hjs/a-videogame-ending-screen-saying-game-over-8-bit-pixel-art-retro-style-hd-animation_bygl_jyhe_thumbnail-full03.png);
+}

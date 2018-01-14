@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import'./charactercreation.css'
 import {Form, FormGroup,Col, FormControl, Button, ControlLabel} from 'react-bootstrap'
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
@@ -29,6 +30,9 @@ class CharacterCreation extends Component {
 
     render() {
       return (
+        <div id='charBackground'>
+        <br></br>
+        <br></br>
         <Form horizontal onSubmit={this.handleSubmit}>
           <FormGroup controlId="formHorizontalName">
             <Col componentClass={ControlLabel} sm={2}>
@@ -120,7 +124,7 @@ class CharacterCreation extends Component {
             </Col>
           </FormGroup>
         </Form>
-
+        </div>
       )
     }
   }

@@ -10,6 +10,7 @@ import Register from './components/Register'
 import SheetList from './components/SheetList'
 import Sheet from './components/Sheet'
 import CharacterCreation from './components/CharacterCreation'
+import Welcome from './components/Welcome'
 
 
 class App extends Component {
@@ -24,7 +25,7 @@ class App extends Component {
         <Route path='/SheetList' component={SheetList} />
         <Route path='/Sheet/:sheetId' component={Sheet} />
         <Route path='/CharacterCreation' component={CharacterCreation} />
-
+        <Route path='/Welcome' component={Welcome} />
       </div>
     </Router>
    );

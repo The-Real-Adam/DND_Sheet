@@ -20,7 +20,7 @@ export const loginUser = (credentials) => {
     const raw = await request.status
       console.log(raw)
       if (request.status === 200){
-        window.location.href = '/'
+        window.location.href = '/Welcome'
       } else {
         window.location.href = '/register'
       }
@@ -63,7 +63,7 @@ export const createSheet = (character) => {
       body: JSON.stringify(character)
     })
     if (request.status === 200) {
-      window.location.href = '/SheetList'
+      History.push('/SheetList')
     } else {
       History.push('/FourOhFour')
     }

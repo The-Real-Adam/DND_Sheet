@@ -3,6 +3,7 @@ import { Form, FormGroup,Col, FormControl, Button, ControlLabel } from 'react-bo
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { loginUser } from '../actions'
+import './login.css'
 
 class Login extends React.Component {
 
@@ -21,6 +22,9 @@ class Login extends React.Component {
 
     render() {
       return (
+        <div id='loginBackground'>
+        <br></br>
+        <br></br>
         <Form horizontal onSubmit={this.handleSubmit}>
           <FormGroup controlId="formHorizontalEmail">
             <Col componentClass={ControlLabel} sm={2}>
@@ -56,7 +60,7 @@ class Login extends React.Component {
             </Col>
           </FormGroup>
         </Form>
-
+        </div>
       )
     }
   }

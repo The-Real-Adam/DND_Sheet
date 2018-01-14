@@ -1,0 +1,43 @@
+#contents {
+  min-width: 100%;
+  min-height: 1000px;
+  margin-top: -20px;
+  justify-content: center;
+  background-color: white;
+  /*font-family: 'VT323', monospace;*/
+}
+
+#hitpointsContain{
+  width: 200px;
+  height: 150px;
+  outline: #000000 solid thick;
+  text-align: center;
+  justify-content: center;
+  padding: 15px 0;
+}
+
+#statsContain{
+  width: 200px;
+  height: 300px;
+  outline: #000000 solid thick;
+  text-align: center;
+  justify-content: center;
+  padding: 6px 0;
+
+}
+
+.largeText{
+  font-size:large;
+}
+
+.center{
+  text-align: center;
+}
+
+.outline{
+  outline: #000000 solid thick;
+}
+
+.bonus{
+  width:30px;
+}

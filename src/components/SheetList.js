@@ -3,7 +3,7 @@ import {Form, FormGroup,Col, FormControl, Button, ControlLabel} from 'react-boot
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {getSheets, getSheet} from '../actions'
-
+import './SheetList.css'
 class SheetList extends React.Component {
 
   componentWillMount = () => {
@@ -29,7 +29,7 @@ class SheetList extends React.Component {
     // sheets.map(x => console.log('x is: ', x))
 
     return (
-      <div className="resultslistcontainer container">
+      <div id='sheetListBackground' className="resultslistcontainer container">
         <table className="table table-hover">
           <thead>
             <tr>
@@ -46,7 +46,7 @@ class SheetList extends React.Component {
               <td>{x.char_name}</td>
               <td>{x.char_class}</td>
               <td>{x.char_level}</td>
-              <td><Button id={x.id} onClick={this.openSheet}> Open </Button></td>
+              <td><Button className='btn btn-dark' id={x.id} onClick={this.openSheet}> Open </Button></td>
               </tr>
             )}
 
