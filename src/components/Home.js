@@ -13,7 +13,7 @@ class Home extends Component {
   }
   componentWillMount(){
     const cookies = new Cookies();
-    const myCookie = Boolean(cookies.get('dnd-jwt'));
+    const myCookie = Boolean(cookies.get('dnd'));
     // console.log(myCookie);
     if(myCookie){
       this.setState({
