@@ -16,7 +16,7 @@ export const loginUser = (credentials) => {
     })
     const body = await request.json()
     const cookies = new Cookies()
-    cookies.set('dnd-jwt', body.token, {path:'/'})
+    cookies.set('dnd', body.token, {path:'/'})
     const raw = await request.status
       console.log(raw)
       if (request.status === 200){

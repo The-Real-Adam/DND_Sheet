@@ -35,7 +35,7 @@ class SheetList extends React.Component {
           </thead>
           <tbody>
 
-            { sheets.map(x =>
+              {sheets.map(x =>
               <tr key={x.id}>
               <td>{x.char_name}</td>
               <td>{x.char_class}</td>
