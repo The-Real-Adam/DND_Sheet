@@ -159,7 +159,7 @@ class Sheet extends Component {
 
             <Row>
               <Col sm={6} md={4}>
-              <h3 className='center'>Core Stats:</h3>
+              <h3 className='center title'>Core Stats:</h3>
                 <div id='statsContain'>
                 <table className="table table-hover">
                   <thead>
@@ -182,7 +182,7 @@ class Sheet extends Component {
               </Col>
 
               <Col sm={6} md={4}>
-              <h3 className='center'>Offense:</h3>
+              <h3 className='center  title'>Offense:</h3>
               <div className='center' id='statsContain'>
               <table className="table table-hover">
                 <thead className='center'>
@@ -203,7 +203,7 @@ class Sheet extends Component {
               </div>
               </Col>
               <Col sm={6} md={4}>
-              <h3 className='center'>Defense:</h3>
+              <h3 className='center title'>Defense:</h3>
               <div className='center' id='statsContain'>
               <table className="table table-hover">
                 <thead className='center'>
@@ -227,7 +227,7 @@ class Sheet extends Component {
 
             <Row>
               <Col sm={6} md={7}>
-                <h3 className='center'>Weapons:</h3>
+                <h3 className='center title'>Weapons:</h3>
                 <div id='weaponsContain'>
                 <table className="table table-hover">
                   <thead>
@@ -253,7 +253,7 @@ class Sheet extends Component {
               </Col>
 
               <Col sm={6} md={5}>
-              <h3 className='center'>Armor:</h3>
+              <h3 className='center title'>Armor:</h3>
 
               <div className='center' id='armorContain'>
               <table className="table table-hover">
@@ -277,9 +277,63 @@ class Sheet extends Component {
               </Col>
             </Row>
 
+            <Row>
+              <Col sm={6} md={12}>
+                <h3 className='center title'>Spells:</h3>
+                <div id='weaponsContain'>
+                <table className="table table-hover">
+                  <thead>
+                    <tr className='center'>
+                      <th>Spell Name</th>
+                      <th>Casting Time</th>
+                      <th>Range</th>
+                      <th>Targets</th>
+                      <th>Saving Throw</th>
+                      <th>Spell Resistance</th>
+                      <th>Description</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>Enlarge Person</td><td>Full Round</td><td>Touch</td><td>Willing Creature Touched</td><td>Will Negates</td><td>No</td><td>Upon Casting the targeted creature increases by one size category.</td></tr>
+                  </tbody>
+                </table>
+                <Button className='editBtn normalText'>Edit</Button>
+                </div>
+              </Col>
+
+
+            </Row>
+            <Row>
+            <Col sm={6} md={12}>
+            <h3 className='center title'>Feats:</h3>
+
+            <div id='armorContain'>
+            <table className="table table-hover">
+              <thead className='center'>
+                <tr className='center'>
+                  <th>Feat Name</th>
+                  <th>Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Toughness</td><td>+2 on Fortitude Saves</td></tr>
+                <tr><td>Evasion</td><td>No Damage from a Successful Reflex Saving Throw</td></tr>
+                <tr><td>Glorious Heat</td><td>When Casting a spell with the Fire Descriptor, gain HP baised on Fire Spell Level, + 1 one to attack for one ally on next melee attack roll</td></tr>
+                <tr><td>Improved Evasion</td><td>Half Damage even on a Failed roll that requires a reflex save, Evasion is a prerequisite</td></tr>
+              </tbody>
+            </table>
+            <Button className='editBtn normalText'>Edit</Button>
+            </div>
+            </Col>
+            </Row>
 
         </Grid>
         </div>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+
         </div>
 
       )
