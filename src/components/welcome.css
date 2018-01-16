@@ -19,10 +19,11 @@
 }
 
 .buttonContain {
-  width: 50%;
+  width: 80%;
   margin: 0 auto;
   color: white;
   font-family: 'Press Start 2P', cursive;
   font-size: small;
+  justify-content: center;
 
 }

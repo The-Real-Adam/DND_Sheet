@@ -8,6 +8,10 @@ render() {
     <div id='welcomeBackground'>
     <div  className='container '>
     <link href="https://fonts.googleapis.com/css?family=Berkshire+Swash|Press+Start+2P" rel="stylesheet"></link>
+    <br></br>
+    <br></br>
+    <br></br>
+    <br></br>
 
       <div className='h1container'>
         <h3>Greetings Adventurer</h3>

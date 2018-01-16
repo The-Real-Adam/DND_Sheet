@@ -81,6 +81,7 @@ export const getSheets = () => {
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
+        'Cookie': 'dnd'
       }
     })
     // console.log('headers is: ', headers);

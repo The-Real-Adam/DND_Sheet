@@ -285,6 +285,7 @@ class Sheet extends Component {
                   <thead>
                     <tr className='center'>
                       <th>Spell Name</th>
+                      <th>Level</th>
                       <th>Casting Time</th>
                       <th>Range</th>
                       <th>Targets</th>
@@ -294,7 +295,7 @@ class Sheet extends Component {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr><td>Enlarge Person</td><td>Full Round</td><td>Touch</td><td>Willing Creature Touched</td><td>Will Negates</td><td>No</td><td>Upon Casting the targeted creature increases by one size category.</td></tr>
+                    <tr><td>Enlarge Person</td><td>1</td><td>Full Round</td><td>Touch</td><td>Willing Creature Touched</td><td>Will Negates</td><td>No</td><td>Upon Casting the targeted creature increases by one size category.</td></tr>
                   </tbody>
                 </table>
                 <Button className='editBtn normalText'>Edit</Button>
