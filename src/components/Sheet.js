@@ -83,7 +83,7 @@ class Sheet extends Component {
         <div className='container'>
         <Grid>
           <Row className='center'>
-            <h1><u>{sheet.char_name} level {sheet.char_level} {sheet.char_class}</u></h1>
+            <h1 className='title'><u>{sheet.char_name} level {sheet.char_level} {sheet.char_class}</u></h1>
           </Row>
             <Row className="show-grid">
                 <Col sm={6} md={3}>
