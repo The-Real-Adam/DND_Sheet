@@ -158,7 +158,8 @@ class Sheet extends Component {
             <br></br>
 
             <Row>
-              <Col sm={6} md={3}>
+              <Col sm={6} md={4}>
+              <h3 className='center'>Core Stats:</h3>
                 <div id='statsContain'>
                 <table className="table table-hover">
                   <thead>
@@ -180,7 +181,8 @@ class Sheet extends Component {
                 </div>
               </Col>
 
-              <Col sm={6} md={3}>
+              <Col sm={6} md={4}>
+              <h3 className='center'>Offense:</h3>
               <div className='center' id='statsContain'>
               <table className="table table-hover">
                 <thead className='center'>
@@ -200,7 +202,8 @@ class Sheet extends Component {
               <Button className='editBtn normalText'>Edit</Button>
               </div>
               </Col>
-              <Col sm={6} md={3}>
+              <Col sm={6} md={4}>
+              <h3 className='center'>Defense:</h3>
               <div className='center' id='statsContain'>
               <table className="table table-hover">
                 <thead className='center'>
@@ -219,8 +222,61 @@ class Sheet extends Component {
               <Button className='editBtn normalText'>Edit</Button>
               </div>
               </Col>
-
             </Row>
+            <br></br>
+
+            <Row>
+              <Col sm={6} md={7}>
+                <h3 className='center'>Weapons:</h3>
+                <div id='weaponsContain'>
+                <table className="table table-hover">
+                  <thead>
+                    <tr className='center'>
+                      <th>Weapon</th>
+                      <th>Damage</th>
+                      <th>Critical</th>
+                      <th>Range</th>
+                      <th>DMG Type</th>
+                      <th>Special</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>Whip</td><td>1d4</td><td>x2</td><td>15 feet</td><td>Slashing</td><td>Trip, Disarm</td></tr>
+                    <tr><td>Long Sword</td><td>1d8</td><td>19/20 x2</td><td>--</td><td>Slashing</td><td>--</td></tr>
+                    <tr><td>Warhammer</td><td>1d8</td><td>x3</td><td>--</td><td>Bludgeoning</td><td>--</td></tr>
+                    <tr><td>Longspear</td><td>1d4</td><td>x2</td><td>--</td><td>Slashing</td><td>Brace, Reach</td></tr>
+                    <tr><td>Quarterstaff</td><td>1d6/1d6</td><td>x2</td><td>--</td><td>Bludgeoning</td><td>Double, Monk</td></tr>
+                  </tbody>
+                </table>
+                <Button className='editBtn normalText'>Edit</Button>
+                </div>
+              </Col>
+
+              <Col sm={6} md={5}>
+              <h3 className='center'>Armor:</h3>
+
+              <div className='center' id='armorContain'>
+              <table className="table table-hover">
+                <thead className='center'>
+                  <tr className='center'>
+                    <th>Armor</th>
+                    <th>AC Bonus</th>
+                    <th>Max Dex</th>
+                    <th>Arcane Failure</th>
+                  </tr>
+                </thead>
+                <tbody className='center'>
+                  <tr><td>Half Plate</td><td>5</td><td>+3</td><td>25%</td></tr>
+                  <tr><td>Buckler</td><td>2</td><td>--</td><td>10%</td></tr>
+                  <tr><td>Half Plate</td><td>5</td><td>+3</td><td>25%</td></tr>
+                  <tr><td>Half Plate</td><td>5</td><td>+3</td><td>25%</td></tr>
+                </tbody>
+              </table>
+              <Button className='editBtn normalText'>Edit</Button>
+              </div>
+              </Col>
+            </Row>
+
 
         </Grid>
         </div>

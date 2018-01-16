@@ -17,7 +17,7 @@
 }
 
 #statsContain{
-  width: 200px;
+  width: 100%;
   height: 300px;
   outline: #000000 solid thick;
   text-align: center;
@@ -27,13 +27,24 @@
 }
 
 #babContain{
-  width: 150px;
+  width: 100%;
   height: 300px;
   outline: #000000 solid thick;
   text-align: center;
   justify-content: center;
   padding: 6px 0;
 
+}
+
+#weaponsContain{
+  width: 100%;
+  outline: #000000 solid thick;
+
+}
+
+#armorContain{
+  width:100%;
+  outline: #000000 solid thick;
 }
 
 .largeText{
