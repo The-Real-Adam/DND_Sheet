@@ -17,6 +17,7 @@ export const loginUser = (credentials) => {
     const body = await request.json()
     const cookies = new Cookies()
     cookies.set('dnd', body.token, {path:'/'})
+    // window.localStorage.setItem('token', body.token)
     const raw = await request.status
       console.log(raw)
       if (request.status === 200){
@@ -52,6 +53,7 @@ export const registerUser = (credentials) => {
 
 export const CHARACTER_CREATE = 'CHARACTER_CREATE'
 export const createSheet = (character) => {
+  let token = window.localStorage.getItem('token')
   return async (dispatch) => {
     const request = await fetch(`${process.env.REACT_APP_API_URL}/sheet`, {
       method: 'POST',
@@ -59,6 +61,7 @@ export const createSheet = (character) => {
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
+        'x-token': token,
       },
       body: JSON.stringify(character)
     })
@@ -72,16 +75,17 @@ export const createSheet = (character) => {
 
 export const GET_SHEETS = 'GET_SHEETS'
 export const getSheets = () => {
+  let token = window.localStorage.getItem('token')
   console.log('inside of the SheetList Action');
   return async (dispatch) => {
     console.log('getSheets hit')
     const request = await fetch(`${process.env.REACT_APP_API_URL}/sheet`, {
       method: 'GET',
-      credentials: 'include',
+      // credentials: 'include',
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
-        'Cookie': 'dnd=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2Vyc0lkIjoxLCJpYXQiOjE1MTYxMzg0NjJ9.7soalP2zX5oBdKYHWINvPvi2rqFm3OANa3BgAK8_uGc'
+        'x-token': token,
       }
     })
     // console.log('headers is: ', headers);
@@ -97,6 +101,7 @@ export const getSheets = () => {
 
 export const GET_SHEET = 'GET_SHEET'
 export const getSheet = (id) => {
+  let token = window.localStorage.getItem('token')
   console.log('get a single sheet and the id of that sheet is: ', id);
   return async (dispatch) => {
     console.log('inside Async request', id)
@@ -107,6 +112,8 @@ export const getSheet = (id) => {
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
+        'x-token': token,
+
       }
     })
     console.log('Post Async Request');
