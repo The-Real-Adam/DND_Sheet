@@ -17,7 +17,7 @@ export const loginUser = (credentials) => {
     const body = await request.json()
     const cookies = new Cookies()
     cookies.set('dnd', body.token, {path:'/'})
-    // window.localStorage.setItem('token', body.token)
+    window.localStorage.setItem('token', body.token)
     const raw = await request.status
       console.log(raw)
       if (request.status === 200){
