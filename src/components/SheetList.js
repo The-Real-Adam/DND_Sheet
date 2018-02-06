@@ -7,6 +7,7 @@ import './SheetList.css'
 class SheetList extends React.Component {
 
   componentWillMount = () => {
+    console.log('this.props in getSheets is:', this.props)
     this.props.getSheets()
   }
 

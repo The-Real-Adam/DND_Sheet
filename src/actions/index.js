@@ -154,6 +154,57 @@ export const updateSheet = (character) => {
   }
 }
 
+export const GET_FEATS = 'GET_FEATS'
+export const getFeats = (id) => {
+  let token = window.localStorage.getItem('token')
+  console.log('inside of the SheetList Action');
+  return async (dispatch) => {
+    console.log('getSheets hit')
+    const request = await fetch(`${process.env.REACT_APP_API_URL}/feats/${id}`, {
+      method: 'GET',
+      // credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'x-token': token,
+      }
+    })
+    // console.log('headers is: ', headers);
+    const string = await request.json()
+    console.log('get feats response is: ', string);
+    console.log('string.data is: ', string[0])
+    dispatch({
+      type: GET_FEATS,
+      payload: string
+    })
+  }
+}
+
+export const GET_SPELLS = 'GET_SPELLS'
+export const getSpells = (id) => {
+  let token = window.localStorage.getItem('token')
+  console.log('inside of the SheetList Action');
+  return async (dispatch) => {
+    console.log('getSheets hit')
+    const request = await fetch(`${process.env.REACT_APP_API_URL}/spells/${id}`, {
+      method: 'GET',
+      // credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'x-token': token,
+      }
+    })
+    // console.log('headers is: ', headers);
+    const string = await request.json()
+    console.log('get spells response is: ', string);
+    console.log('string.data is: ', string[0])
+    dispatch({
+      type: GET_SPELLS,
+      payload: string
+    })
+  }
+}
 
 export const DAMAGE_HANDLER = 'DAMAGE_HANDLER'
 export const damageHandler = (hitpoints, id) => {

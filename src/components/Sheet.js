@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {Clearfix, Grid, Row, Form, FormGroup, Col, FormControl, Button, ControlLabel} from 'react-bootstrap'
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import {getSheet, damageHandler} from '../actions'
+import {getSheet, damageHandler, getFeats, getSpells} from '../actions'
 import './sheet.css'
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap-theme.css';
@@ -28,7 +28,10 @@ class Sheet extends Component {
     console.log('this.state:', this.state);
     console.log('this.props is: ', this.props);
     // console.log('this.props.sheet is: ', store.getState());
-
+    // console.log('this is what gets the sheet: ', this.props.getSheet(this.props.match.params.sheetId));
+    // console.log('this.props.feats <<<<--', this.props.getFeats(this.props.match.params.sheetId));
+    this.props.getFeats(this.props.match.params.sheetId)
+    this.props.getSpells(this.props.match.params.sheetId)
     this.props.getSheet(this.props.match.params.sheetId)
   }
 
@@ -55,6 +58,8 @@ class Sheet extends Component {
     this.props.damageHandler(hitpoints, id);
   }
 
+
+
   editCharacter = (event) =>{
     this.setState({
       editing:true
@@ -77,6 +82,11 @@ class Sheet extends Component {
       console.log('this.props.sheet.id>>>>>>',this.props.sheet.id)
       // let sheet = this.props.state.sheet
       console.log('this.props.sheet:  in <Sheet />å', sheet);
+      console.log('this.props.feats: in <SHEET/>', this.props.feats);
+      console.log('this.props.spells: in <SHEET/>', this.props.spells);
+
+      let feats = this.props.feats ||[]
+      let spells = this.props.spells||[]
       return (
         <div id='contents'>
         <br></br>
@@ -295,7 +305,18 @@ class Sheet extends Component {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr><td>Enlarge Person</td><td>1</td><td>Full Round</td><td>Touch</td><td>Willing Creature Touched</td><td>Will Negates</td><td>No</td><td>Upon Casting the targeted creature increases by one size category.</td></tr>
+                  {spells.map(x =>
+                  <tr key={x.id}>
+                  <td>{x.name}</td>
+                  <td>{x.spell_level}</td>
+                  <td>{x.casting_time}</td>
+                  <td>{x.range}</td>
+                  <td>{x.targets}</td>
+                  <td>{x.saving_throw}</td>
+                  <td>{x.spell_resistance.toString()}</td>
+                  <td>{x.description}</td>
+                  </tr>
+                  )}
                   </tbody>
                 </table>
                 <Button className='editBtn normalText'>Edit</Button>
@@ -317,10 +338,12 @@ class Sheet extends Component {
                 </tr>
               </thead>
               <tbody>
-                <tr><td>Toughness</td><td>+2 on Fortitude Saves</td></tr>
-                <tr><td>Evasion</td><td>No Damage from a Successful Reflex Saving Throw</td></tr>
-                <tr><td>Glorious Heat</td><td>When Casting a spell with the Fire Descriptor, gain HP baised on Fire Spell Level, + 1 one to attack for one ally on next melee attack roll</td></tr>
-                <tr><td>Improved Evasion</td><td>Half Damage even on a Failed roll that requires a reflex save, Evasion is a prerequisite</td></tr>
+              {feats.map(x =>
+              <tr key={x.id}>
+              <td>{x.name}</td>
+              <td>{x.description}</td>
+              </tr>
+              )}
               </tbody>
             </table>
             <Button className='editBtn normalText'>Edit</Button>
@@ -343,13 +366,17 @@ class Sheet extends Component {
   const mapStateToProps = (state) => {
 
     return {
-      sheet: state.sheet
+      sheet: state.sheet,
+      feats: state.feats,
+      spells: state.spells
     }
   }
 
   const mapDispatchToProps = dispatch => bindActionCreators({
     getSheet,
-    damageHandler
+    damageHandler,
+    getFeats,
+    getSpells
   }, dispatch)
 
   export default connect(
