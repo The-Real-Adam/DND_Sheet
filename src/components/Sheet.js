@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {Clearfix, Grid, Row, Form, FormGroup, Col, FormControl, Button, ControlLabel} from 'react-bootstrap'
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import {getSheet, damageHandler, getFeats, getSpells} from '../actions'
+import {getSheet, damageHandler, getFeats, getSpells, getWeapons, getArmors} from '../actions'
 import './sheet.css'
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap-theme.css';
@@ -32,6 +32,8 @@ class Sheet extends Component {
     // console.log('this.props.feats <<<<--', this.props.getFeats(this.props.match.params.sheetId));
     this.props.getFeats(this.props.match.params.sheetId)
     this.props.getSpells(this.props.match.params.sheetId)
+    this.props.getWeapons(this.props.match.params.sheetId)
+    this.props.getArmors(this.props.match.params.sheetId)
     this.props.getSheet(this.props.match.params.sheetId)
   }
 
@@ -87,6 +89,9 @@ class Sheet extends Component {
 
       let feats = this.props.feats ||[]
       let spells = this.props.spells||[]
+      let weapons = this.props.weapons||[]
+      let armors = this.props.armors ||[]
+
       return (
         <div id='contents'>
         <br></br>
@@ -251,11 +256,16 @@ class Sheet extends Component {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr><td>Whip</td><td>1d4</td><td>x2</td><td>15 feet</td><td>Slashing</td><td>Trip, Disarm</td></tr>
-                    <tr><td>Long Sword</td><td>1d8</td><td>19/20 x2</td><td>--</td><td>Slashing</td><td>--</td></tr>
-                    <tr><td>Warhammer</td><td>1d8</td><td>x3</td><td>--</td><td>Bludgeoning</td><td>--</td></tr>
-                    <tr><td>Longspear</td><td>1d4</td><td>x2</td><td>--</td><td>Slashing</td><td>Brace, Reach</td></tr>
-                    <tr><td>Quarterstaff</td><td>1d6/1d6</td><td>x2</td><td>--</td><td>Bludgeoning</td><td>Double, Monk</td></tr>
+                  {weapons.map(x =>
+                  <tr key={x.id}>
+                  <td>{x.weapon}</td>
+                  <td>{x.damage}</td>
+                  <td>{x.critical}</td>
+                  <td>{x.range}</td>
+                  <td>{x.damage_type}</td>
+                  <td>{x.special}</td>
+                  </tr>
+                )}
                   </tbody>
                 </table>
                 <Button className='editBtn normalText'>Edit</Button>
@@ -276,10 +286,14 @@ class Sheet extends Component {
                   </tr>
                 </thead>
                 <tbody className='center'>
-                  <tr><td>Half Plate</td><td>5</td><td>+3</td><td>25%</td></tr>
-                  <tr><td>Buckler</td><td>2</td><td>--</td><td>10%</td></tr>
-                  <tr><td>Half Plate</td><td>5</td><td>+3</td><td>25%</td></tr>
-                  <tr><td>Half Plate</td><td>5</td><td>+3</td><td>25%</td></tr>
+                {armors.map(x =>
+                <tr key={x.id}>
+                <td>{x.armor}</td>
+                <td>{x.armor_bonus}</td>
+                <td>{x.max_dex_bonus}</td>
+                <td>{x.arcane_failure}%</td>
+                </tr>
+              )}
                 </tbody>
               </table>
               <Button className='editBtn normalText'>Edit</Button>
@@ -368,7 +382,9 @@ class Sheet extends Component {
     return {
       sheet: state.sheet,
       feats: state.feats,
-      spells: state.spells
+      spells: state.spells,
+      weapons: state.weapons,
+      armors: state.armors
     }
   }
 
@@ -376,7 +392,9 @@ class Sheet extends Component {
     getSheet,
     damageHandler,
     getFeats,
-    getSpells
+    getSpells,
+    getWeapons,
+    getArmors
   }, dispatch)
 
   export default connect(

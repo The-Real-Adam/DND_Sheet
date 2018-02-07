@@ -206,6 +206,58 @@ export const getSpells = (id) => {
   }
 }
 
+export const GET_WEAPONS = 'GET_WEAPONS'
+export const getWeapons = (id) => {
+  let token = window.localStorage.getItem('token')
+  console.log('inside of the SheetList Action');
+  return async (dispatch) => {
+    console.log('getSheets hit')
+    const request = await fetch(`${process.env.REACT_APP_API_URL}/weapons/${id}`, {
+      method: 'GET',
+      // credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'x-token': token,
+      }
+    })
+    // console.log('headers is: ', headers);
+    const string = await request.json()
+    console.log('get spells response is: ', string);
+    console.log('string.data is: ', string[0])
+    dispatch({
+      type: GET_WEAPONS,
+      payload: string
+    })
+  }
+}
+
+export const GET_ARMORS = 'GET_ARMORS'
+export const getArmors = (id) => {
+  let token = window.localStorage.getItem('token')
+  console.log('inside of the SheetList Action');
+  return async (dispatch) => {
+    console.log('getSheets hit')
+    const request = await fetch(`${process.env.REACT_APP_API_URL}/armor/${id}`, {
+      method: 'GET',
+      // credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'x-token': token,
+      }
+    })
+    // console.log('headers is: ', headers);
+    const string = await request.json()
+    console.log('get spells response is: ', string);
+    console.log('string.data is: ', string[0])
+    dispatch({
+      type: GET_ARMORS,
+      payload: string
+    })
+  }
+}
+
 export const DAMAGE_HANDLER = 'DAMAGE_HANDLER'
 export const damageHandler = (hitpoints, id) => {
   console.log('hit damageHandler in actions');
